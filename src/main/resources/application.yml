@@ -2,4 +2,6 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://127.0.0.1:3306/ljg?characterEncoding=UTF-8
+    url: jdbc:mysql://127.0.0.1:3306/ljg?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2b8
+flowable:
+  check-process-definitions: false
