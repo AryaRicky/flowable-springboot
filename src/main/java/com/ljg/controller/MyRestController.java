@@ -1,10 +1,11 @@
 package com.ljg.controller;
 
 import com.ljg.service.MyService;
+import org.flowable.engine.RepositoryService;
 import org.flowable.task.api.Task;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +13,19 @@ import java.util.List;
 @RestController
 public class MyRestController {
 
-    @Autowired
+    @Resource
     private MyService myService;
+    @Resource
+    private RepositoryService repositoryService;
 
-    @PostMapping(value="/startProc")
-    public void startProcessInstance() {
-        myService.startProcess();
+    @PostMapping("deploy/{procDefKey}")
+    public String deploy(@PathVariable String procDefKey) {
+        return repositoryService.createDeployment().key(procDefKey).deploy().getId();
+    }
+
+    @PostMapping(value="/startProc/{procDefKey}")
+    public void startProcessInstance(@PathVariable String procDefKey, @RequestParam String businessKey) {
+        myService.startProcess(procDefKey, businessKey);
     }
 
     @PostMapping(value="/setAssignee")

@@ -6,4 +6,4 @@
 4.下载了flowable-6.6.0，里面有flowable-ui.war，可以直接java -jar flowable-ui.war去运营，之后到管理页面登陆admin/test即可以到流程编辑页面
 去创建流程并保存。默认是h2数据库保存，我下载了tomcat8，直接丢到webapps上面，删除ROOT，修改8085端口，运行./start.sh;tail -f ../logs/catalina.out
 会自动部署，修改解压后的文件夹里的数据库配置，修改喂我自己的mysql配置，即可使用自己的数据库了。
-5.todo 集成流程设计器到此项目中来，不要每次都单独部署。思路：把相关累copy进来，看看缺什么jar引入即可
+5.集成流程设计器，可以通过设计器创建和修改流程

@@ -2,6 +2,14 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://127.0.0.1:3306/ljg?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2b8
+    url: jdbc:mysql://127.0.0.1:3306/ljg?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=GMT%2b8
 flowable:
   check-process-definitions: false
+  idm:
+    enabled: false
+  database-schema-update: false
+  activityFontName: '微软雅黑'
+  labelFontName: '微软雅黑'
+  annotationFontName: '微软雅黑'
+  async-executor-activate: false
+  async-history-executor-activate: false

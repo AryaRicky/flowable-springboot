@@ -1,0 +1,7 @@
+<div ng-controller="FlowableSelectPropertyCtrl">
+    <select ng-model="property.value"
+            ng-options="item.value as item.text for item in property.items"
+            ng-change="selectChanged()">
+        <option value="" selected>-请选择-</option>
+    </select>
+</div>
