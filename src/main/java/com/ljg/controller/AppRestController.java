@@ -5,7 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.ljg.config.ExtUserTaskJsonConverter;
+import com.ljg.config.ExtBpmnJsonConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -405,10 +405,4 @@ public class AppRestController {
                 null, 1.0, true);
     }
 
-    private static class ExtBpmnJsonConverter extends BpmnJsonConverter {
-        static {
-            convertersToBpmnMap.put(STENCIL_TASK_USER, ExtUserTaskJsonConverter.class);
-            ExtUserTaskJsonConverter.customFillTypes(convertersToBpmnMap, convertersToJsonMap);
-        }
-    }
 }

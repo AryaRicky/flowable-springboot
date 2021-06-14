@@ -1,7 +1,8 @@
 package com.ljg.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ljg.service.MyService;
-import org.flowable.engine.RepositoryService;
+import org.flowable.engine.TaskService;
 import org.flowable.task.api.Task;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,16 +17,27 @@ public class MyRestController {
     @Resource
     private MyService myService;
     @Resource
-    private RepositoryService repositoryService;
+    private TaskService taskService;
 
-    @PostMapping("deploy/{procDefKey}")
-    public String deploy(@PathVariable String procDefKey) {
-        return repositoryService.createDeployment().key(procDefKey).deploy().getId();
+    @PostMapping("deploy/{modelId}")
+    public String deploy(@PathVariable String modelId) {
+        try {
+            return myService.deploymentBpmn(modelId);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "fail";
+        }
     }
 
     @PostMapping(value="/startProc/{procDefKey}")
     public void startProcessInstance(@PathVariable String procDefKey, @RequestParam String businessKey) {
         myService.startProcess(procDefKey, businessKey);
+    }
+
+    @PostMapping(value="/complete/{taskId}")
+    public String complete(@PathVariable String taskId) {
+        taskService.complete(taskId);
+        return "ok";
     }
 
     @PostMapping(value="/setAssignee")
