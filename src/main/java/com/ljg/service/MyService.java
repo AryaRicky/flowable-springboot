@@ -55,7 +55,7 @@ public class MyService {
             throw new RuntimeException("该模型没有找到主流程");
         }
         //部署
-        Deployment deploy = repositoryService.createDeployment().key(model.getKey()).name(model.getName()).addBpmnModel(model.getName() + RESOURCE_NAME_SUFFIX, bpmnModel).deploy();
+        Deployment deploy = repositoryService.createDeployment().category(model.getCategory()).key(model.getKey()).name(model.getName()).addBpmnModel(model.getName() + RESOURCE_NAME_SUFFIX, bpmnModel).deploy();
         // 记录部署id
         model.setDeploymentId(deploy.getId());
         repositoryService.saveModel(model);
